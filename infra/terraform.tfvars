@@ -13,4 +13,4 @@ ec2_ami_id     = "ami-06dd92ecc74fdfb36"
 
 ec2_user_data_install_apache = ""
 
-domain_name = "methukupally.world"
+domain_name = "realhandsonlabs.net"
