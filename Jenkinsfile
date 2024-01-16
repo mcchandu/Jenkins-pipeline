@@ -76,5 +76,17 @@ pipeline {
                 }
             }
         }
+
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    withSonarQubeEnv('SonarCloud') {
+                        sh 'echo "=================SonarQube Analysis=================="'
+                        sh 'mvn clean package sonar:sonar -Dsonar.projectKey=my-project-key -Dsonar.organization=my-organization-key -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${SONAR_TOKEN}'
+                    }
+                }
+            }
+        }
     }
 }
+
