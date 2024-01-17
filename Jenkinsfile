@@ -77,15 +77,16 @@ pipeline {
             }
         }
 
-        stage('SonarCloud Analysis') {
+        stage {
+         
+          stage("build & SonarQube Scanner") {
+            agent any
             steps {
-                script {
-                    withSonarQubeEnv(credentialsId: 'sonarqube_server') {
-                        // Use SonarCloud scanner to run the analysis
-                        sh 'sonar-scanner'
-                    }
-                }
+              withSonarQubeEnv('sonarqube_server') {
+                sh 'mvn clean package sonar:sonar'
+              }
             }
+          }
         }
 
     }
