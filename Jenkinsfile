@@ -78,14 +78,14 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
-        steps {
-            script {
-               def scannerHome = tool 'SonarCloud'
-               withSonarQubeEnv('SonarCloud') {
-                sh "${scannerHome}/bin/sonar-scanner -Dsonar.login=${SONAR_TOKEN}"
+            steps {
+                script {
+                    withSonarQubeEnv('SonarCloud') {
+                        sh 'echo "=================SonarQube Analysis=================="'
+                        sh 'mvn clean package sonar:sonar -Dsonar.projectKey=my-project-key -Dsonar.organization=my-organization-key -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${SONAR_TOKEN}'
+                    }
+                }
             }
         }
     }
 }
-
-
