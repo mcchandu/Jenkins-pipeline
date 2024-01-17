@@ -80,7 +80,7 @@ pipeline {
         stage('SonarCloud Analysis') {
             steps {
                 script {
-                    withSonarQubeEnv(credentialsId: 'sonarcloud-credentials-id') {
+                    withSonarQubeEnv(credentialsId: 'sonarqube_server') {
                         // Use SonarCloud scanner to run the analysis
                         sh 'sonar-scanner'
                     }
