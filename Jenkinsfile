@@ -76,10 +76,8 @@ pipeline {
                 }
             }
         }
-
-        stage {
          
-          stage("build & SonarQube Scanner") {
+        stage("build & SonarQube Scanner") {
             agent any
             steps {
               withSonarQubeEnv('sonarqube_server') {
@@ -87,7 +85,7 @@ pipeline {
               }
             }
           }
-        }
-
     }
+
+    
 }
